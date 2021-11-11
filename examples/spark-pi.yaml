@@ -24,7 +24,7 @@ spec:
   image: "registry.cn-hangzhou.aliyuncs.com/zul/spark:v2.4.5"
   imagePullPolicy: Always
   mainClass: org.apache.spark.examples.SparkPi
-  mainApplicationFile: "local:///opt/spark/examples/jars/spark-examples_2.11-2.4.5.jar"
+  mainApplicationFile: "local:///opt/spark/examples/target/scala-2.11/jars/spark-examples_2.11-2.4.5.jar"
   sparkVersion: "2.4.5"
   restartPolicy:
     type: Never
