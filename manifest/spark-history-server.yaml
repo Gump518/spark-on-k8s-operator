@@ -55,3 +55,20 @@ spec:
       - name: localtime
         hostPath:
           path: /etc/localtime
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: spark-history-server
+  namespace: default
+spec:
+  type: NodePort
+  ports:
+    - name: default
+      nodePort: 32700
+      port: 32700
+      protocol: TCP
+      targetPort: 18080
+  selector:
+    app.kubernetes.io/name: spark-history-server
+    app.kubernetes.io/version: v2.4.5
