@@ -43,7 +43,7 @@ spec:
           secretName: spark-webhook-certs
       containers:
       - name: sparkoperator
-        image: gcr.io/spark-operator/spark-operator:v2.4.5-v1beta2-latest
+        image: registry.cn-hangzhou.aliyuncs.com/zul/spark-operator:v2.4.5-v1beta2
         imagePullPolicy: Always
         volumeMounts:
         - name: webhook-certs
@@ -54,6 +54,7 @@ spec:
         - -logtostderr
         - -enable-webhook=true
         - -v=2
+        - -enable-batch-scheduler=true
 ---
 apiVersion: batch/v1
 kind: Job
@@ -75,7 +76,7 @@ spec:
       restartPolicy: Never
       containers:
       - name: main
-        image: gcr.io/spark-operator/spark-operator:v2.4.5-v1beta2-latest
+        image: registry.cn-hangzhou.aliyuncs.com/zul/spark-operator:v2.4.5-v1beta2
         imagePullPolicy: IfNotPresent
         command: ["/usr/bin/gencerts.sh", "-p"]
 ---

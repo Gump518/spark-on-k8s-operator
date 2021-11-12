@@ -52,3 +52,6 @@ spec:
     volumeMounts:
       - name: "test-volume"
         mountPath: "/tmp"
+  sparkconfig:
+    "spark.eventLog.enabled": "true"
+    "spark.eventLog.dir": "hdfs:///spark2-history/"
