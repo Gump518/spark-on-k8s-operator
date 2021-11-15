@@ -43,6 +43,12 @@ spec:
     volumeMounts:
       - name: "test-volume"
         mountPath: "/tmp"
+    env:
+      - name: HADOOP_USER_NAME
+        value: "hdfs"
+      - name: HADOOP_CONF_DIR
+        value: "/etc/hadoop/conf"
+
   executor:
     cores: 1
     instances: 1
@@ -52,10 +58,16 @@ spec:
     volumeMounts:
       - name: "test-volume"
         mountPath: "/tmp"
+    env:
+      - name: HADOOP_USER_NAME
+        value: "hdfs"
+      - name: HADOOP_CONF_DIR
+        value: "/etc/hadoop/conf"
+
   sparkconfig:
     "spark.eventLog.enabled": "true"
     "spark.eventLog.dir": "hdfs:///spark2-history/"
 
-  hadoopConfigMap: "hadoop-config"
+  hadoopConfigMap: hadoop-config
 
 
