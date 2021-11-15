@@ -41,5 +41,15 @@ spec:
       - name: sparkoperator
         image: registry.cn-hangzhou.aliyuncs.com/zul/spark-operator:v2.4.5-v1beta2
         imagePullPolicy: Always
+        volumeMounts:
+          - name: localtime
+            mountPath: /etc/localtime
+            readOnly: true
         args:
         - -logtostderr
+
+      volumes:
+        - name: localtime
+          hostPath:
+            path: /etc/localtime
+
