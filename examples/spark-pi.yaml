@@ -29,10 +29,10 @@ spec:
   restartPolicy:
     type: Never
   volumes:
-    - name: "test-volume"
-      hostPath:
-        path: "/tmp"
-        type: Directory
+  - name: "test-volume"
+    hostPath:
+      path: "/tmp"
+      type: Directory
   driver:
     cores: 1
     coreLimit: "1200m"
@@ -41,13 +41,8 @@ spec:
       version: 2.4.5
     serviceAccount: spark
     volumeMounts:
-      - name: "test-volume"
-        mountPath: "/tmp"
-    env:
-      - name: HADOOP_USER_NAME
-        value: "hdfs"
-      - name: HADOOP_CONF_DIR
-        value: "/etc/hadoop/conf"
+    - name: "test-volume"
+      mountPath: "/tmp"
 
   executor:
     cores: 1
@@ -56,18 +51,10 @@ spec:
     labels:
       version: 2.4.5
     volumeMounts:
-      - name: "test-volume"
-        mountPath: "/tmp"
-    env:
-      - name: HADOOP_USER_NAME
-        value: "hdfs"
-      - name: HADOOP_CONF_DIR
-        value: "/etc/hadoop/conf"
+    - name: "test-volume"
+      mountPath: "/tmp"
 
-  sparkconfig:
+  sparkConf:
     "spark.eventLog.enabled": "true"
-    "spark.eventLog.dir": "hdfs:///spark2-history/"
-
-  hadoopConfigMap: hadoop-config
-
-
+    "spark.eventLog.dir": "hdfs://ambari-21.hadoop:8020/spark2-history/"
+    "spark.history.fs.logDirectory": "hdfs://ambari-21.hadoop:8020/spark2-history/"

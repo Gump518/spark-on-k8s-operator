@@ -54,7 +54,6 @@ spec:
         - -logtostderr
         - -enable-webhook=true
         - -v=2
-        - -enable-batch-scheduler=true
 ---
 apiVersion: batch/v1
 kind: Job
