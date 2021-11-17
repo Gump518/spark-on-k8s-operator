@@ -59,6 +59,7 @@ spec:
         args:
         - -logtostderr
         - -enable-webhook=true
+        - -namespace=spark-apps
         - -v=2
 ---
 apiVersion: batch/v1
