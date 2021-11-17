@@ -59,8 +59,7 @@ spec:
         args:
         - -logtostderr
         - -enable-webhook=true
-        - -namespace=spark-apps
-        - -v=2
+        - -v=8
 ---
 apiVersion: batch/v1
 kind: Job
