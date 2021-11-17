@@ -46,7 +46,7 @@ metadata:
 subjects:
 - kind: ServiceAccount
   name: spark
-  namespace: default
+  namespace: spark-apps
 roleRef:
   kind: Role
   name: spark-role
