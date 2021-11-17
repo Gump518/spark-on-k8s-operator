@@ -98,14 +98,13 @@ distinguished_name = req_distinguished_name
 basicConstraints = CA:FALSE
 keyUsage = nonRepudiation, digitalSignature, keyEncipherment
 extendedKeyUsage = clientAuth, serverAuth
-subjectAltName = DNS:${SERVICE}.${NAMESPACE}.svc
 EOF
 
 # Create a certificate authority.
 touch ${TMP_DIR}/.rnd
 export RANDFILE=${TMP_DIR}/.rnd
 openssl genrsa -out ${TMP_DIR}/ca-key.pem 2048
-openssl req -x509 -new -nodes -key ${TMP_DIR}/ca-key.pem -days 100000 -out ${TMP_DIR}/ca-cert.pem -subj "/CN=${SERVICE}.${NAMESPACE}.svc"
+openssl req -x509 -new -nodes -key ${TMP_DIR}/ca-key.pem -days 100000 -out ${TMP_DIR}/ca-cert.pem -subj "/CN=${SERVICE}_ca"
 
 # Create a server certificate.
 openssl genrsa -out ${TMP_DIR}/server-key.pem 2048

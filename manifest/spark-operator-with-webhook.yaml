@@ -61,29 +61,30 @@ spec:
         - -enable-webhook=true
         - -v=8
 ---
-apiVersion: batch/v1
-kind: Job
-metadata:
-  name: sparkoperator-init
-  namespace: spark-operator
-  labels:
-    app.kubernetes.io/name: sparkoperator
-    app.kubernetes.io/version: v2.4.5-v1beta2
-spec:
-  backoffLimit: 3
-  template:
-    metadata:
-      labels:
-        app.kubernetes.io/name: sparkoperator
-        app.kubernetes.io/version: v2.4.5-v1beta2
-    spec:
-      serviceAccountName: sparkoperator
-      restartPolicy: Never
-      containers:
-      - name: main
-        image: registry.cn-hangzhou.aliyuncs.com/zul/spark-operator:v2.4.5-v1beta2
-        imagePullPolicy: IfNotPresent
-        command: ["/usr/bin/gencerts.sh", "-p"]
+# generate ca results in issue at pod, suggest that generate ca at host
+#apiVersion: batch/v1
+#kind: Job
+#metadata:
+#  name: sparkoperator-init
+#  namespace: spark-operator
+#  labels:
+#    app.kubernetes.io/name: sparkoperator
+#    app.kubernetes.io/version: v2.4.5-v1beta2
+#spec:
+#  backoffLimit: 3
+#  template:
+#    metadata:
+#      labels:
+#        app.kubernetes.io/name: sparkoperator
+#        app.kubernetes.io/version: v2.4.5-v1beta2
+#    spec:
+#      serviceAccountName: sparkoperator
+#      restartPolicy: Never
+#      containers:
+#      - name: main
+#        image: registry.cn-hangzhou.aliyuncs.com/zul/spark-operator:v2.4.5-v1beta2
+#        imagePullPolicy: IfNotPresent
+#        command: ["/usr/bin/gencerts.sh", "-p"]
 ---
 kind: Service
 apiVersion: v1
