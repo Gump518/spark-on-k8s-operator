@@ -59,6 +59,7 @@ spec:
         args:
         - -logtostderr
         - -enable-webhook=true
+        - -namespace=spark-apps
         - -v=8
 ---
 # generate ca results in issue at pod, suggest that generate ca at host
