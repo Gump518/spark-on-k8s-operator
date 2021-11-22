@@ -23,7 +23,7 @@ metadata:
     app.kubernetes.io/name: sparkoperator
     app.kubernetes.io/version: v2.4.5-v1beta2
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app.kubernetes.io/name: sparkoperator
@@ -44,9 +44,11 @@ spec:
       - name: localtime
         hostPath:
           path: /etc/localtime
+      imagePullSecrets:
+        - name: hexbigdata
       containers:
       - name: sparkoperator
-        image: registry.cn-hangzhou.aliyuncs.com/zul/spark-operator:v2.4.5-v1beta2
+        image: swr.cn-north-4.myhuaweicloud.com/hexbigdata/spark-operator:v2.4.5-v1beta2
         imagePullPolicy: Always
         volumeMounts:
         - name: webhook-certs
@@ -60,7 +62,12 @@ spec:
         - -logtostderr
         - -enable-webhook=true
         - -namespace=spark-apps
-        - -v=8
+        - -leader-election=true
+        - -enable-resource-quota-enforcement=true
+        - -enable-batch-scheduler=true
+        - -enable-metrics=true
+        - -metrics-prefix=spark
+        - -v=2
 ---
 # generate ca results in issue at pod, suggest that generate ca at host
 #apiVersion: batch/v1
